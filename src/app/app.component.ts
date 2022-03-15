@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RepositoryService } from './repository.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'git-chat';
+
+  constructor(private repository :  RepositoryService){}
+
+  urlSet() : boolean{
+   return this.repository.getUrl != null; 
+  }
 }
