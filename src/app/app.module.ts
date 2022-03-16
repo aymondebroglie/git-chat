@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FavoriteColorComponent } from './repository-form/repository-form.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { repoReducer } from './store/repo.reducer';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { StoreModule } from '@ngrx/store';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({url : repoReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

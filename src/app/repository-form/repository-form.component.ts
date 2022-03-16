@@ -1,25 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { RepositoryService } from '../repository.service';
+import { Store } from '@ngrx/store';
+import { setUrl } from '../store/repo.actions';
 
 @Component({
   selector: 'repository-form',
   templateUrl : './repository-form.component.html'
 })
-export class FavoriteColorComponent implements OnInit{
+export class FavoriteColorComponent {
 
-    constructor(private repository : RepositoryService) {
-
+    constructor(private store : Store<{url : (string | null)}>) {
+      
     }
     repositoryUrl = new FormControl('',{ validators : Validators.required});
 
 
-    ngOnInit(): void {
-    console.log(this.repositoryUrl.value);
-  }
 
   onSubmit() : void {
-    this.repository.setUrl(this.repositoryUrl.value);
-    console.log(this.repositoryUrl.value);
+    this.store.dispatch(setUrl({repo_url : this.repositoryUrl.value}));
   } 
 }

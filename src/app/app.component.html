@@ -1,5 +1,10 @@
 <h1>{{title}}</h1>
 
-<div *ngIf="urlSet">
+<div *ngIf="(repoUrl$ | async) === ''; else elseBlock;  ">
 <repository-form></repository-form>
 </div>
+<ng-template #elseBlock>
+    <div> URL : {{repoUrl$ | async}}</div>
+    <button (click)="resetUrl()">Reset Repository Url </button>
+ </ng-template>
+
