@@ -28,11 +28,11 @@ export class GitService {
             http,
             dir : this.dir,
             corsProxy: 'https://cors.isomorphic-git.org',
-            url: 'https://github.com/isomorphic-git/isomorphic-git',
+            url: repoUrl,
             ref: 'main',
             singleBranch: true,
             depth: 10
-        }).then( r => console.log("done"));
+        }).then(r => console.log( 'done'));
         console.log("hello");
         await this.pfs.readdir(this.dir).then(console.log);
     }
