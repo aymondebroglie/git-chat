@@ -13,7 +13,7 @@ export class ChannelSelectorComponent implements OnInit {
   constructor( private git  : GitService ) { }
 
   ngOnInit(): void {
-    this.git.cloneRepo(this.repoUrl);
+    this.git.cloneRepo(this.repoUrl).then(console.log);
   }
 
 }
