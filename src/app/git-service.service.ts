@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import FS from '@isomorphic-git/lightning-fs'
 import * as git from 'isomorphic-git'
 import * as http from 'isomorphic-git/http/web/index.js'
-import {getMatIconFailedToSanitizeLiteralError} from "@angular/material/icon";
+import {from, Observable} from 'rxjs'
 
 
 
@@ -37,6 +37,10 @@ export class GitService {
         }).then(r => console.log( 'done'));
         console.log("hello");
         await this.pfs.readdir(this.dir).then(console.log);
+    }
+
+    channels(dir : string) : Observable<String[]>{
+        return  from(git.listBranches({fs : this.fs, dir : dir , remote : 'origin' }))
     }
 
     hash(s : string , seed = 186) : string {
