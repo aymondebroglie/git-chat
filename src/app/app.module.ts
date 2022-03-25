@@ -22,8 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
         AppRoutingModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        StoreModule.forRoot({url: repoReducer}),
-        HttpClientModule
+        StoreModule.forRoot({url: repoReducer})
     ],
     providers: [],
     bootstrap: [AppComponent]
