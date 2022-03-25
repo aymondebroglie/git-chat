@@ -1,13 +1,15 @@
 <h1>{{title}}</h1>
 
 <div *ngIf="(repoUrl$ | async) === ''; else elseBlock;  ">
-<repository-form></repository-form>
+    <repository-form></repository-form>
 </div>
 <ng-template #elseBlock>
     <div> URL : {{repoUrl$ | async}}</div>
-    <button (click)="resetUrl()">Reset Repository Url </button>
+    <button (click)="resetUrl()">Reset Repository Url</button>
 
-    <app-channel-selector></app-channel-selector>
- </ng-template>
+    <ng-container *ngIf="repoUrl$ | async as repoUrl">
+        <app-channel-selector [repoUrl]="repoUrl" ></app-channel-selector>
+    </ng-container>
+</ng-template>
 
 

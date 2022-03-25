@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {GitService} from "../git-service.service";
 
 @Component({
@@ -8,10 +8,12 @@ import {GitService} from "../git-service.service";
 })
 export class ChannelSelectorComponent implements OnInit {
 
+  @Input() repoUrl : string =  ''
+
   constructor( private git  : GitService ) { }
 
   ngOnInit(): void {
-    this.git.cloneRepo();
+    this.git.cloneRepo(this.repoUrl);
   }
 
 }
