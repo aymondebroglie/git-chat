@@ -1,7 +1,7 @@
 import { createReducer, on, State  } from "@ngrx/store";
 import { resetUrl, setUrl } from "./repo.actions";
 
-export const intialState : string    =  '' ;
+export const intialState : string    =  "" ;
 
 const _repoReducer = createReducer(
     intialState,

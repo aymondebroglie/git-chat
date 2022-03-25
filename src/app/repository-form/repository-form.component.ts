@@ -7,9 +7,9 @@ import { setUrl } from '../store/repo.actions';
   selector: 'repository-form',
   templateUrl : './repository-form.component.html'
 })
-export class FavoriteColorComponent {
+export class RepositoryFormComponent {
 
-    constructor(private store : Store<{url : (string | null)}>) {
+    constructor(private store : Store<{url : string }>) {
       
     }
     repositoryUrl = new FormControl('',{ validators : Validators.required});

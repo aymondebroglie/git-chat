@@ -10,9 +10,9 @@ import { resetUrl } from './store/repo.actions';
 })
 export class AppComponent implements OnInit{
   title = 'git-chat';
-  repoUrl$: Observable<(string | null)>;
+  repoUrl$: Observable<string>  ;
 
-  constructor(private store : Store<{url : (string | null)}>){
+  constructor(private store : Store<{url : string }>){
     this.repoUrl$ = store.select('url') 
   }
 
