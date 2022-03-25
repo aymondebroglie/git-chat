@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import FS from '@isomorphic-git/lightning-fs'
 import * as git from 'isomorphic-git'
 import * as http from 'isomorphic-git/http/web/index.js'
+import {getMatIconFailedToSanitizeLiteralError} from "@angular/material/icon";
 
 
 
@@ -31,7 +32,8 @@ export class GitService {
             ref: 'main',
             singleBranch: true,
             depth: 10
-        });
+        }).then( r => console.log("done"));
+        console.log("hello");
         await this.pfs.readdir(this.dir).then(console.log);
     }
 
