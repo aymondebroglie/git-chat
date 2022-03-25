@@ -12,7 +12,7 @@ export class FavoriteColorComponent {
     constructor(private store : Store<{url : (string | null)}>) {
       
     }
-    repositoryUrl = new FormControl('',{ validators : Validators.required});
+    repositoryUrl = new FormControl('https://github.com/aymondebroglie/test-for-chat.git',{ validators : Validators.required});
 
 
 
