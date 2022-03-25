@@ -1,6 +1,9 @@
-import {Injectable, Input} from '@angular/core';
+import {Injectable} from '@angular/core';
 import FS from '@isomorphic-git/lightning-fs'
 import {clone} from 'isomorphic-git'
+
+// @ts-ignore
+import {http} from 'stream-http'
 
 @Injectable({
     providedIn: 'root'
@@ -14,8 +17,10 @@ export class GitService {
         this.dir = './test-clone'
     }
 
-    cloneRepo( repoUrl : string ) {
-        console.log("Cloning the repo " + repoUrl )
+    cloneRepo(repoUrl: string) {
+        console.log(http)
+        clone(
+            {dir: "", fs: this.fs, http: http, url: repoUrl})
     }
 
 }
