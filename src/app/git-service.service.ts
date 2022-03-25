@@ -3,7 +3,7 @@ import FS from '@isomorphic-git/lightning-fs'
 import {clone} from 'isomorphic-git'
 
 // @ts-ignore
-import {http} from 'stream-http'
+import * as http from 'stream-http'
 
 @Injectable({
     providedIn: 'root'
@@ -14,13 +14,13 @@ export class GitService {
 
     constructor() {
         this.fs = new FS('fs');
-        this.dir = './test-clone'
+        this.dir = '/test-clone'
     }
 
     cloneRepo(repoUrl: string) {
         console.log(http)
         clone(
-            {dir: "", fs: this.fs, http: http, url: repoUrl})
+            {dir: this.dir, fs: this.fs, http: http, url: repoUrl})
     }
 
 }
