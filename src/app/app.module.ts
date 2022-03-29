@@ -10,14 +10,16 @@ import {StoreModule} from '@ngrx/store';
 import {repoReducer} from './store/repo.reducer';
 import {CloneComponent} from './channel-selector/clone.component';
 import {HttpClientModule} from "@angular/common/http";
-import { MessagesComponent } from './messages/messages.component';
+import { ChannelComponent } from './messages/channel.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FavoriteColorComponent,
         CloneComponent,
-        MessagesComponent
+        ChannelComponent,
+        MessageComponent
     ],
     imports: [
         BrowserModule,

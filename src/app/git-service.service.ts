@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import FS from '@isomorphic-git/lightning-fs'
 import * as git from 'isomorphic-git'
+import {FetchResult, ReadCommitResult} from 'isomorphic-git'
 import * as http from 'isomorphic-git/http/web/index.js'
 import {from, Observable} from 'rxjs'
 
@@ -36,11 +37,22 @@ export class GitService {
             http,
             dir: dirName,
             corsProxy: 'https://cors.isomorphic-git.org',
-            url: repoUrl,
-            ref: 'main',
-            singleBranch: true,
+            url: repoUrl
+            // ref: 'main'
         });
 
+    }
+
+    gitFetch(dirName: string): Observable<FetchResult> {
+        return from(git.fetch({fs: this.fs, http, dir: dirName}))
+    }
+
+    messages(dirName: string): Observable<Array<ReadCommitResult>> {
+        console.log(dirName);
+        return from(git.log({fs: this.fs, dir: dirName, depth: 50}).catch(err => {
+            console.log(err);
+            return []
+        }))
     }
 
 
