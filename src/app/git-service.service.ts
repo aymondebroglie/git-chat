@@ -5,45 +5,50 @@ import * as http from 'isomorphic-git/http/web/index.js'
 import {from, Observable} from 'rxjs'
 
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class GitService {
     fs: FS;
-    pfs : FS.PromisifiedFS
-    dir: string;
+    pfs: FS.PromisifiedFS
 
     constructor() {
         this.fs = new FS('fs');
         this.pfs = this.fs.promises
-        this.dir = '/test-clone'
     }
 
-    async cloneRepo(repoUrl: string) {
-        const dirName  = this.hash(repoUrl);
+    async cloneRepo(repoUrl: string): Promise<string> {
+        const dirName = '/' + this.hash(repoUrl);
         console.log(dirName)
 
-        this.pfs.readdir(dirName).then().catch()
+        await this.pfs.readdir(dirName)
+            .catch(
+                err => this.cloneRepoInDir(repoUrl, dirName)
+            );
+
+        return dirName;
+
+    }
+
+    async cloneRepoInDir(repoUrl: string, dirName: string) {
         await git.clone({
-            fs : this.fs,
+            fs: this.fs,
             http,
-            dir : this.dir,
+            dir: dirName,
             corsProxy: 'https://cors.isomorphic-git.org',
             url: repoUrl,
             ref: 'main',
             singleBranch: true,
-            depth: 10
-        }).then(r => console.log( 'done'));
-        console.log("hello");
-        await this.pfs.readdir(this.dir).then(console.log);
+        });
+
     }
 
-    channels(dir : string) : Observable<String[]>{
-        return  from(git.listBranches({fs : this.fs, dir : dir , remote : 'origin' }))
+
+    channels(dir: string): Observable<String[]> {
+        return from(git.listBranches({fs: this.fs, dir: dir, remote: 'origin'}))
     }
 
-    hash(s : string , seed = 186) : string {
+    hash(s: string, seed = 186): string {
         // taken from stackoverflow  https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
         let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
         for (let i = 0, ch; i < s.length; i++) {

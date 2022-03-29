@@ -1,0 +1,6 @@
+<ng-container *ngIf="repoCloned ; else elseBlock">
+    <app-messages></app-messages>
+</ng-container>
+<ng-template #elseBlock>
+    <p> cloning the repo ! Please wait ! </p>
+</ng-template>

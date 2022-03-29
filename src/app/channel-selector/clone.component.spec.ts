@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChannelSelectorComponent } from './channel-selector.component';
+import { CloneComponent } from './clone.component';
 
 describe('ChannelSelectorComponent', () => {
-  let component: ChannelSelectorComponent;
-  let fixture: ComponentFixture<ChannelSelectorComponent>;
+  let component: CloneComponent;
+  let fixture: ComponentFixture<CloneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChannelSelectorComponent ]
+      declarations: [ CloneComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChannelSelectorComponent);
+    fixture = TestBed.createComponent(CloneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,7 +8,7 @@
     <button (click)="resetUrl()">Reset Repository Url</button>
 
     <ng-container *ngIf="repoUrl$ | async as repoUrl">
-        <app-channel-selector [repoUrl]="repoUrl" ></app-channel-selector>
+        <app-clone [repoUrl]="repoUrl" ></app-clone>
     </ng-container>
 </ng-template>
 

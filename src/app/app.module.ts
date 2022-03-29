@@ -8,14 +8,16 @@ import {FavoriteColorComponent} from './repository-form/repository-form.componen
 import {ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
 import {repoReducer} from './store/repo.reducer';
-import {ChannelSelectorComponent} from './channel-selector/channel-selector.component';
+import {CloneComponent} from './channel-selector/clone.component';
 import {HttpClientModule} from "@angular/common/http";
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FavoriteColorComponent,
-        ChannelSelectorComponent
+        CloneComponent,
+        MessagesComponent
     ],
     imports: [
         BrowserModule,
