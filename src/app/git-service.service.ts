@@ -44,14 +44,17 @@ export class GitService {
     }
 
     gitFetch(dirName: string): Observable<FetchResult> {
-        return from(git.fetch({fs: this.fs, http, dir: dirName}))
+        return from(git.fetch({fs: this.fs, http, dir: dirName, ref : 'main'}).then(r => {
+            console.log('done fetching');
+            return r
+        }))
     }
 
     messages(dirName: string): Observable<Array<ReadCommitResult>> {
-        console.log(dirName);
-        return from(git.log({fs: this.fs, dir: dirName, depth: 50}).catch(err => {
-            console.log(err);
-            return []
+        console.log("logging")
+        return from(git.log({fs: this.fs, dir: dirName, depth: 50,ref : 'origin/main'}).then(r => {
+            console.log("done logging");
+            return r
         }))
     }
 

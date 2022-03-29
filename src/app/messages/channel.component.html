@@ -1,3 +1,4 @@
 <div *ngFor= " let message of (messages$ | async ) ; ">
-    <p>{{message}}</p>
+    <app-message [message]="message"></app-message>
+    <br>
 </div>

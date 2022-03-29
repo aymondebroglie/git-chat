@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GitService} from "../git-service.service";
-import {EMPTY, interval, Observable} from "rxjs";
+import {EMPTY, interval, map, Observable, switchMap} from "rxjs";
 import {ReadCommitResult} from "isomorphic-git";
 
 @Component({
@@ -18,8 +18,19 @@ export class ChannelComponent implements OnInit {
     messages$: Observable<Array<ReadCommitResult>> = EMPTY;
 
     ngOnInit(): void {
-        this.messages$ = interval(60000)
-            .pipe(i => this.git.gitFetch(this.repoDir)).pipe(f => this.git.messages(this.repoDir))
+        // interval(60000).subscribe( x => this.git.gitFetch(this.repoDir).subscribe(
+        //     f => this.messages$ = this.git.messages(this.repoDir)
+        // ))
+
+        this.fetchAndGetMessages()
+
+        interval(60000).subscribe(x => this.fetchAndGetMessages())
+    }
+
+    fetchAndGetMessages() {
+        this.messages$ = this.git.gitFetch(this.repoDir).pipe(
+            switchMap(f => this.git.messages(this.repoDir)),map( m => m.reverse() )
+        )
     }
 
 }
