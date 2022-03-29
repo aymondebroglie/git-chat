@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GitService} from "../git-service.service";
+import {GlobalInformation} from "../global.information";
 
 @Component({
     selector: 'app-clone',
@@ -8,7 +9,7 @@ import {GitService} from "../git-service.service";
 })
 export class CloneComponent implements OnInit {
 
-    @Input() repoUrl: string = ''
+    @Input() information!: GlobalInformation
     repoCloned: boolean = false;
     repoDir: string = '';
 
@@ -16,7 +17,7 @@ export class CloneComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.git.cloneRepo(this.repoUrl).then(repoDir => {
+        this.git.cloneRepo(this.information.repoUrl).then(repoDir => {
             this.repoCloned = true;
             this.repoDir = repoDir
         });

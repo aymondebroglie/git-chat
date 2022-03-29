@@ -1,3 +1,7 @@
-<label for="repo"> Repository URL </label>
-<input id="repo" type="text"  [formControl]="repositoryUrl"/>
-<button id="submit-url" type="submit" (click)="onSubmit()" [disabled]="!repositoryUrl.valid" >Set url</button>
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <label for="repo"> Repository URL </label>
+    <input id="repo" type="text"  required [(ngModel)]="information.repoUrl" name="repoUrl" />
+    <label for ="name"> Name </label>
+    <input id="name" type="text" required [(ngModel)]="information.name" name="name">
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+</form>

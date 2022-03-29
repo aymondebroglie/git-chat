@@ -38,7 +38,6 @@ export class GitService {
             dir: dirName,
             corsProxy: 'https://cors.isomorphic-git.org',
             url: repoUrl
-            // ref: 'main'
         });
 
     }

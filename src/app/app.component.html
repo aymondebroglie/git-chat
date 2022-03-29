@@ -1,14 +1,14 @@
 <h1>{{title}}</h1>
 
-<div *ngIf="(repoUrl$ | async) === ''; else elseBlock;  ">
+<div *ngIf="(information$ | async) === {repoUrl : '', name : ''}; else elseBlock;  ">
     <repository-form></repository-form>
 </div>
 <ng-template #elseBlock>
-    <div> URL : {{repoUrl$ | async}}</div>
-    <button (click)="resetUrl()">Reset Repository Url</button>
-
-    <ng-container *ngIf="repoUrl$ | async as repoUrl">
-        <app-clone [repoUrl]="repoUrl" ></app-clone>
+    <ng-container *ngIf="information$ | async as information">
+        <div> URL : {{information.repoUrl}}</div>
+        <div>Name : {{information.name}}</div>
+        <button (click)="resetInformation()">Reset Repository Url</button>
+        <app-clone [information]="information"></app-clone>
     </ng-container>
 </ng-template>
 

@@ -4,19 +4,18 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FavoriteColorComponent} from './repository-form/repository-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {RepositoryFormComponent} from './repository-form/repository-form.component';
+import {FormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
-import {repoReducer} from './store/repo.reducer';
-import {CloneComponent} from './channel-selector/clone.component';
-import {HttpClientModule} from "@angular/common/http";
-import { ChannelComponent } from './messages/channel.component';
-import { MessageComponent } from './message/message.component';
+import {informationReducer} from './store/repo.reducer';
+import {CloneComponent} from './clone/clone.component';
+import {ChannelComponent} from './channel/channel.component';
+import {MessageComponent} from './message/message.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        FavoriteColorComponent,
+        RepositoryFormComponent,
         CloneComponent,
         ChannelComponent,
         MessageComponent
@@ -25,8 +24,8 @@ import { MessageComponent } from './message/message.component';
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        ReactiveFormsModule,
-        StoreModule.forRoot({url: repoReducer})
+        FormsModule,
+        StoreModule.forRoot({information: informationReducer})
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { setUrl } from '../store/repo.actions';
+import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {setInformation} from '../store/repo.actions';
+import {GlobalInformation} from "../global.information";
 
 @Component({
-  selector: 'repository-form',
-  templateUrl : './repository-form.component.html'
+    selector: 'repository-form',
+    templateUrl: './repository-form.component.html'
 })
-export class FavoriteColorComponent {
+export class RepositoryFormComponent {
+    information: GlobalInformation = {repoUrl: 'https://github.com/aymondebroglie/git-chat.git', name: 'ME'}
 
-    constructor(private store : Store<{url : (string | null)}>) {
-      
+
+    constructor(private store: Store<{ url: (string | null) }>) {
+
     }
-    repositoryUrl = new FormControl('https://github.com/aymondebroglie/test-for-chat.git',{ validators : Validators.required});
 
 
-
-  onSubmit() : void {
-    this.store.dispatch(setUrl({repo_url : this.repositoryUrl.value}));
-  } 
+    onSubmit(): void {
+        this.store.dispatch(setInformation({information: this.information}));
+    }
 }

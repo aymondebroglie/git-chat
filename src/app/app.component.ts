@@ -1,25 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { resetUrl } from './store/repo.actions';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {GlobalInformation} from "./global.information";
+import {resetInformation} from "./store/repo.actions";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'git-chat';
-  repoUrl$: Observable<(string | null)>;
+export class AppComponent implements OnInit {
+    title = 'git-chat';
+    information$: Observable<GlobalInformation>
 
-  constructor(private store : Store<{url : (string | null)}>){
-    this.repoUrl$ = store.select('url') 
-  }
+    constructor(private store: Store<{ information: GlobalInformation }>) {
+        this.information$ = store.select('information')
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  resetUrl() : void {
-    this.store.dispatch(resetUrl());
-  }
+    resetInformation(): void {
+        this.store.dispatch(resetInformation());
+    }
 }
