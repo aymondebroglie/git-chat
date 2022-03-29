@@ -18,17 +18,13 @@ export class ChannelComponent implements OnInit {
     messages$: Observable<Array<ReadCommitResult>> = EMPTY;
 
     ngOnInit(): void {
-        // interval(60000).subscribe( x => this.git.gitFetch(this.repoDir).subscribe(
-        //     f => this.messages$ = this.git.messages(this.repoDir)
-        // ))
 
-        this.fetchAndGetMessages()
-
-        interval(60000).subscribe(x => this.fetchAndGetMessages())
+        this.pullAndGetMessages()
+        interval(60000).subscribe(x => this.pullAndGetMessages())
     }
 
-    fetchAndGetMessages() {
-        this.messages$ = this.git.gitFetch(this.repoDir).pipe(
+    pullAndGetMessages() {
+        this.messages$ = this.git.gitPull(this.repoDir).pipe(
             switchMap(f => this.git.messages(this.repoDir)),map( m => m.reverse() )
         )
     }
