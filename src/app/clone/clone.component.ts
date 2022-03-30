@@ -10,7 +10,7 @@ import {GlobalInformation} from "../global.information";
 export class CloneComponent implements OnInit {
 
     @Input() information!: GlobalInformation
-    repoCloned: boolean = false;
+    initDone: boolean = false;
     repoDir: string = '';
 
     constructor(private git: GitService) {
@@ -18,9 +18,9 @@ export class CloneComponent implements OnInit {
 
     ngOnInit(): void {
         this.git.cloneRepo(this.information.repoUrl).then(repoDir => {
-            this.repoCloned = true;
-            this.repoDir = repoDir
-        });
+            this.repoDir = repoDir;
+            return this.git.config(this.repoDir, this.information.name);
+       }).then(x => this.initDone = true);
     }
 
 

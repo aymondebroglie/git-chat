@@ -1,4 +1,4 @@
-<ng-container *ngIf="repoCloned ; else elseBlock">
+<ng-container *ngIf="initDone ; else elseBlock">
     <app-channel [repoDir]="repoDir"></app-channel>
 </ng-container>
 <ng-template #elseBlock>

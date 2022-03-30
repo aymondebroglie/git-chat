@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {Observable} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {GlobalInformation} from "./global.information";
 import {resetInformation} from "./store/repo.actions";
 
@@ -12,9 +12,12 @@ import {resetInformation} from "./store/repo.actions";
 export class AppComponent implements OnInit {
     title = 'git-chat';
     information$: Observable<GlobalInformation>
+    informationFilled$ : Observable<Boolean> 
 
     constructor(private store: Store<{ information: GlobalInformation }>) {
         this.information$ = store.select('information')
+        this.informationFilled$ = this.information$.pipe(
+            map(i => i.repoUrl == '' && i.name == ''))
     }
 
     ngOnInit(): void {

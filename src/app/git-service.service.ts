@@ -30,6 +30,13 @@ export class GitService {
         return dirName;
 
     }
+    
+    async config(dirName : string,name : string) : Promise<void> { 
+        await git.setConfig({fs : this.fs,
+            dir : dirName,
+            path : 'user.name',
+            value : name});
+    }
 
     async cloneRepoInDir(repoUrl: string, dirName: string) {
         await git.clone({

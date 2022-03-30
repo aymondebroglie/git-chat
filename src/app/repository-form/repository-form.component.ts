@@ -8,10 +8,11 @@ import {GlobalInformation} from "../global.information";
     templateUrl: './repository-form.component.html'
 })
 export class RepositoryFormComponent {
-    information: GlobalInformation = {repoUrl: 'https://github.com/aymondebroglie/git-chat.git', name: 'ME'}
+    information: GlobalInformation = {repoUrl: 'https://github.com/aymondebroglie/test-for-chat.git',
+         name: 'me'}
 
 
-    constructor(private store: Store<{ url: (string | null) }>) {
+    constructor(private store: Store<{ information: GlobalInformation }>) {
 
     }
 
